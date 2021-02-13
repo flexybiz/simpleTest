@@ -1,5 +1,11 @@
-import math
 import random
+import re
+
+
+def cut_text(text, lenth):
+    textArr = re.findall('.{'+str(lenth)+'}', text)
+    return textArr
+
 
 def generateSnils():
     # rnd = math.floor(math)
@@ -13,5 +19,5 @@ def generateSnils():
         chkSum = '00'
     else:
         chkSum = str(chk).rjust(2, '0')
-    # TODO сделать возврат двух форматов снилс, через дефис и через пробел
-    return [number, chkSum]
+    # Возвращает снилс в 3ёх видах ХХХХХХХХХХХХ , ХХХ ХХХ ХХХ ХХ ,  ХХХ-ХХХ-ХХХ ХХ
+    return [number + chkSum, ' '.join(cut_text(number, 3)) + ' ' + chkSum, '-'.join(cut_text(number, 3)) + ' ' + chkSum]
