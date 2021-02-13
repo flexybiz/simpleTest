@@ -2,6 +2,13 @@ import random
 import re
 
 
+def replaceInText(text, inp, to):
+    out = ''
+    for line in text.split('\n'):
+        out += line.replace(inp, to) + '\n'
+    return out
+
+
 def cut_text(text, lenth):
     textArr = re.findall('.{'+str(lenth)+'}', text)
     return textArr
