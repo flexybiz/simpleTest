@@ -1,6 +1,7 @@
 from test.snils import generateSnils as GS
 from test.snils import replaceInText as RT
 from test.snils import guid as GUID
+from test.snils import makeMZMKMother as MMZMK
 
 
 def print_hi(name):
@@ -18,5 +19,4 @@ replaced with another element
     '''
     print(RT(txt, '#{element}', 'simple element'))
     print(GUID())
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    MMZMK()

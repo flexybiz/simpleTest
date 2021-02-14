@@ -7,6 +7,19 @@ def guid():
     return str(uuid.uuid4())
 
 
+def makeMZMKMother():
+    snils = generateSnils()
+    uid = guid()
+    infile = open('test/data/МЗМКмать.xml', mode='r', encoding='utf-8')
+    intext = infile.read()
+    infile.close()
+    intext = replaceInText(intext, '#{snils}', snils[2])
+    intext = replaceInText(intext, '#{guid}', uid)
+    outfile = open('F:/mzmk_mother.xml', mode='w', encoding='utf-8')
+    outfile.write(intext)
+    outfile.close()
+
+
 def replaceInText(text, inp, to):
     out = ''
     for line in text.split('\n'):
