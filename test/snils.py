@@ -1,5 +1,10 @@
 import random
 import re
+import uuid
+
+
+def guid():
+    return str(uuid.uuid4())
 
 
 def replaceInText(text, inp, to):

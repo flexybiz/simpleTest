@@ -1,5 +1,6 @@
 from test.snils import generateSnils as GS
 from test.snils import replaceInText as RT
+from test.snils import guid as GUID
 
 
 def print_hi(name):
@@ -16,5 +17,6 @@ text with a #{element} to be
 replaced with another element
     '''
     print(RT(txt, '#{element}', 'simple element'))
+    print(GUID())
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
