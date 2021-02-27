@@ -1,26 +1,41 @@
 import random
 import re
 import uuid
+import requests
 
 
-def guid():
+def info_from_emu():
+    url = "http://localhost:8080/info"
+    r = requests.get(url)
+    assert str(r.text) == "\"rest-vio-emulator v1.0\""
+
+
+def send_to_emu():
+    url = "http://localhost:8080/send"
+    file = open("test/data/mzmk_mother.xml", "rb").read()
+    data = {'claim_type': 'MZMK', 'claim_body': file}
+    r = requests.post(url, data=data)
+    print(r.text)
+
+
+def generate_guid():
     return str(uuid.uuid4())
 
 
-def makeMZMKMother():
-    snils = generateSnils()
-    uid = guid()
-    infile = open('test/data/МЗМКмать.xml', mode='r', encoding='utf-8')
+def make_mzmk_mother():
+    snils = generate_snils()
+    guid = generate_guid()
+    infile = open('test/data/mzmk_pattern.xml', mode='r', encoding='utf-8')
     intext = infile.read()
     infile.close()
-    intext = replaceInText(intext, '#{snils}', snils[2])
-    intext = replaceInText(intext, '#{guid}', uid)
-    outfile = open('F:/mzmk_mother.xml', mode='w', encoding='utf-8')
+    intext = replace_in_text(intext, '#{snils}', snils[2])
+    intext = replace_in_text(intext, '#{guid}', guid)
+    outfile = open('test/data/mzmk_mother.xml', mode='w', encoding='utf-8')
     outfile.write(intext)
     outfile.close()
 
 
-def replaceInText(text, inp, to):
+def replace_in_text(text, inp, to):
     out = ''
     for line in text.split('\n'):
         out += line.replace(inp, to) + '\n'
@@ -32,7 +47,7 @@ def cut_text(text, lenth):
     return textArr
 
 
-def generateSnils():
+def generate_snils():
     # rnd = math.floor(math)
     number = str(random.randrange(1001998, 999999999, 1)).rjust(9, '0')
     numbers = [[char, i] for i, char in enumerate(number)]

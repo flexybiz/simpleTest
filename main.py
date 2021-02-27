@@ -1,7 +1,9 @@
-from test.snils import generateSnils as GS
-from test.snils import replaceInText as RT
-from test.snils import guid as GUID
-from test.snils import makeMZMKMother as MMZMK
+from test.snils import generate_snils as GS
+from test.snils import replace_in_text as RT
+from test.snils import generate_guid as GUID
+from test.snils import make_mzmk_mother as MMZMK
+from test.snils import info_from_emu as IFE
+from test.snils import send_to_emu as STE
 
 
 def print_hi(name):
@@ -20,3 +22,5 @@ replaced with another element
     print(RT(txt, '#{element}', 'simple element'))
     print(GUID())
     MMZMK()
+    IFE()
+    STE()

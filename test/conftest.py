@@ -1,10 +1,8 @@
 import pytest
+from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium import webdriver
-import time
-# import math
 
 
 @pytest.fixture(scope="function")
@@ -16,7 +14,8 @@ def browser():
     browser.quit()
 
 
-def test_login(browser):
+@pytest.fixture(scope="function")
+def msk_login(browser):
     browser.get("https://mini-ecasa/mskt/index")
     WebDriverWait(browser, 5).until(
         EC.presence_of_element_located((By.ID, "username"))
@@ -37,6 +36,3 @@ def test_login(browser):
         EC.presence_of_element_located((By.ID, "btnChangeOrgUnit-btnIconEl"))
     )
     print(">>>>>>>> logged in")
-
-
-
