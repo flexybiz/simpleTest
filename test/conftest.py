@@ -9,6 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 def browser():
     options = webdriver.ChromeOptions()
     options.add_argument('ignore-certificate-errors')
+    # options.add_argument('auto-open-devtools-for-tabs')
     browser = webdriver.Chrome(options=options)
     yield browser
     browser.quit()
